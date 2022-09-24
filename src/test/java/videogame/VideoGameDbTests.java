@@ -1,3 +1,5 @@
+package videogame;
+
 import static io.restassured.RestAssured.given;
 
 import config.VideoGameConfig;
