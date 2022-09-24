@@ -1,15 +1,16 @@
 import org.junit.Test;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 
-public class MyFirstTest {
+public class MyFirstTest extends BaseApiTest {
 
     @Test
     public void myFirstTest() {
         given()
-                .log().all().
-        when().get("http://localhost:8080/app/videogames").
-        then().
-                log().all();
+                .log().all()
+                .when().get("/videogames")
+                .then()
+                .log().all();
     }
+
 }
