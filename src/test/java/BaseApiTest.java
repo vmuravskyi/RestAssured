@@ -8,6 +8,7 @@ public class BaseApiTest {
         RestAssured.baseURI = "http://localhost";
         RestAssured.basePath = "/app";
         RestAssured.port = 8080;
+        RestAssured.proxy("localhost", 8888);
     }
 
 }
