@@ -90,7 +90,7 @@ public class VideoGameDbTests extends VideoGameConfig {
     @Test
     public void getSingleGameAsDto() {
         var response = given()
-            .pathParam("videoGameId", 15)
+            .pathParam("videoGameId", 5)
             .get(VideoGamesEndpoints.VIDEOGAME)
             .then()
             .extract()
