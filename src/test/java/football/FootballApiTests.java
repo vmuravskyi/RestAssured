@@ -4,12 +4,15 @@ import static io.restassured.RestAssured.given;
 
 import config.FootballApiConfig;
 import config.FootballEndpoints;
+import config.VideoGamesEndpoints;
+import dto.VideoGameDto;
 import io.restassured.http.ContentType;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
-import java.util.ArrayList;
 import java.util.List;
 import org.hamcrest.Matchers;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 public class FootballApiTests extends FootballApiConfig {
@@ -124,7 +127,5 @@ public class FootballApiTests extends FootballApiConfig {
         List<String> teamNames = response.jsonPath().getList("teams.name", String.class);
         teamNames.forEach(System.out::println);
     }
-
-
 
 }

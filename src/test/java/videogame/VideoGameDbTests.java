@@ -1,11 +1,12 @@
 package videogame;
 
-import static io.restassured.RestAssured.form;
 import static io.restassured.RestAssured.given;
 
 import config.VideoGameConfig;
 import config.VideoGamesEndpoints;
 import dto.VideoGameDto;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 public class VideoGameDbTests extends VideoGameConfig {
@@ -98,6 +99,23 @@ public class VideoGameDbTests extends VideoGameConfig {
 
         VideoGameDto fromResponse = response.as(VideoGameDto.class);
         System.out.println(fromResponse.getReleaseDate());
+    }
+
+    @Test
+    public void testVideoGameSerializationByJson() {
+        VideoGameDto videoGame = new VideoGameDto().newBuilder()
+            .setId("14")
+            .setName("My Awesome Game")
+            .setRating("Mature")
+            .setReviewScore("99")
+            .setCategory("Shooter")
+            .setReleaseDate(DateTime.parse("03/04/1991", DateTimeFormat.forPattern("dd/MM/yyyy")))
+            .build();
+        given()
+            .body(videoGame)
+            .when()
+            .post(VideoGamesEndpoints.VIDEOGAMES)
+            .then();
     }
 
 }

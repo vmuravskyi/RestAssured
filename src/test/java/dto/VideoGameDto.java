@@ -27,6 +27,19 @@ public class VideoGameDto {
     @JsonProperty(value = "rating", access = Access.READ_WRITE)
     private String rating;
 
+    public VideoGameDto() {
+        // default constructor
+    }
+
+    public VideoGameDto(String id, String name, DateTime releaseDate, String reviewScore, String category,
+        String rating) {
+        this.id = id;
+        this.name = name;
+        this.releaseDate = releaseDate;
+        this.reviewScore = reviewScore;
+        this.category = category;
+        this.rating = rating;
+    }
 
     public String getReviewScore() {
         return reviewScore;
@@ -76,6 +89,10 @@ public class VideoGameDto {
         this.category = category;
     }
 
+    public VideoGameBuilder newBuilder() {
+        return new VideoGameBuilder();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -114,3 +131,4 @@ public class VideoGameDto {
     }
 
 }
+
