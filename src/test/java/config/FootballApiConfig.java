@@ -23,7 +23,7 @@ public class FootballApiConfig {
     public static void setup() {
         requestSpecification = new RequestSpecBuilder()
             .setBaseUri("https://api.football-data.org")
-            .setBasePath("/v4/matches")
+            .setBasePath("/v4")
             .addHeader(X_AUTH_TOKEN_HEADER, X_AUTH_TOKEN_VALUE)
             .addHeader(X_RESPONSE_CONTROL_HEADER, X_RESPONSE_CONTROL_VALUE)
             .addFilter(new RequestLoggingFilter())

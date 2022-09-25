@@ -1,9 +1,11 @@
 package videogame;
 
+import static io.restassured.RestAssured.form;
 import static io.restassured.RestAssured.given;
 
 import config.VideoGameConfig;
 import config.VideoGamesEndpoints;
+import dto.VideoGameDto;
 import org.junit.Test;
 
 public class VideoGameDbTests extends VideoGameConfig {
@@ -82,6 +84,20 @@ public class VideoGameDbTests extends VideoGameConfig {
             .pathParam("videoGameId", 15)
             .get(VideoGamesEndpoints.VIDEOGAME)
             .then();
+    }
+
+    // extract as dto
+    @Test
+    public void getSingleGameAsDto() {
+        var response = given()
+            .pathParam("videoGameId", 15)
+            .get(VideoGamesEndpoints.VIDEOGAME)
+            .then()
+            .extract()
+            .response();
+
+        VideoGameDto fromResponse = response.as(VideoGameDto.class);
+        System.out.println(fromResponse.getReleaseDate());
     }
 
 }
