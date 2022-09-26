@@ -104,12 +104,12 @@ public class VideoGameDbTests extends VideoGameConfig {
     @Test
     public void testVideoGameSerializationByJson() {
         VideoGameDto videoGame = new VideoGameDto().newBuilder()
-            .setId("14")
-            .setName("My Awesome Game")
-            .setRating("Mature")
-            .setReviewScore("99")
-            .setCategory("Shooter")
-            .setReleaseDate(DateTime.parse("03/04/1991", DateTimeFormat.forPattern("dd/MM/yyyy")))
+            .withId("14")
+            .withName("My Awesome Game")
+            .withRating("Mature")
+            .withReviewScore("99")
+            .withCategory("Shooter")
+            .withReleaseDate(DateTime.parse("03/04/1991", DateTimeFormat.forPattern("dd/MM/yyyy")))
             .build();
         given()
             .body(videoGame)

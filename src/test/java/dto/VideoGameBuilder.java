@@ -12,32 +12,32 @@ public class VideoGameBuilder {
     private String category;
     private String rating;
 
-    public VideoGameBuilder setId(String id) {
+    public VideoGameBuilder withId(String id) {
         this.id = id;
         return this;
     }
 
-    public VideoGameBuilder setName(String name) {
+    public VideoGameBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public VideoGameBuilder setReleaseDate(DateTime releaseDate) {
+    public VideoGameBuilder withReleaseDate(DateTime releaseDate) {
         this.releaseDate = releaseDate;
         return this;
     }
 
-    public VideoGameBuilder setReviewScore(String reviewScore) {
+    public VideoGameBuilder withReviewScore(String reviewScore) {
         this.reviewScore = reviewScore;
         return this;
     }
 
-    public VideoGameBuilder setCategory(String category) {
+    public VideoGameBuilder withCategory(String category) {
         this.category = category;
         return this;
     }
 
-    public VideoGameBuilder setRating(String rating) {
+    public VideoGameBuilder withRating(String rating) {
         this.rating = rating;
         return this;
     }
