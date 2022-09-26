@@ -1,0 +1,75 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "id",
+        "name",
+        "releaseDate",
+        "reviewScore",
+        "category",
+        "rating"
+    ],
+    "properties": {
+        "id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The id Schema",
+            "examples": [
+                14
+            ]
+        },
+        "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "My Awesome Game"
+            ]
+        },
+        "releaseDate": {
+            "type": "string",
+            "default": "",
+            "title": "The releaseDate Schema",
+            "examples": [
+                "1991-04-03"
+            ]
+        },
+        "reviewScore": {
+            "type": "integer",
+            "default": 0,
+            "title": "The reviewScore Schema",
+            "examples": [
+                99
+            ]
+        },
+        "category": {
+            "type": "string",
+            "default": "",
+            "title": "The category Schema",
+            "examples": [
+                "Shooter"
+            ]
+        },
+        "rating": {
+            "type": "string",
+            "default": "",
+            "title": "The rating Schema",
+            "examples": [
+                "Mature"
+            ]
+        }
+    },
+    "examples": [
+        {
+            "id": 14,
+            "name": "My Awesome Game",
+            "releaseDate": "1991-04-03",
+            "reviewScore": 99,
+            "category": "Shooter",
+            "rating": "Mature"
+        }
+    ]
+}

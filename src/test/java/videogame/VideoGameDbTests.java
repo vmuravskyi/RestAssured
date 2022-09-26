@@ -1,10 +1,16 @@
 package videogame;
 
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 
 import config.VideoGameConfig;
 import config.VideoGamesEndpoints;
 import dto.VideoGameDto;
+import io.restassured.http.ContentType;
+import io.restassured.matcher.RestAssuredMatchers;
+import io.restassured.module.jsv.JsonSchemaValidator;
+import org.hamcrest.Matchers;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
@@ -111,11 +117,52 @@ public class VideoGameDbTests extends VideoGameConfig {
             .withCategory("Shooter")
             .withReleaseDate(DateTime.parse("03/04/1991", DateTimeFormat.forPattern("dd/MM/yyyy")))
             .build();
+
         given()
             .body(videoGame)
             .when()
             .post(VideoGamesEndpoints.VIDEOGAMES)
             .then();
+    }
+
+    // validate XSD Schema for XML response body
+    @Test
+    public void testVideoGameSchemaXml() {
+        given()
+            .pathParam("videoGameId", 14)
+            .header("Content-Type", ContentType.XML) // override defined in requestSpec
+            .header("Accept", ContentType.XML) // override defined in requestSpec
+            .when()
+            .get(VideoGamesEndpoints.VIDEOGAME)
+            .then()
+            .body(RestAssuredMatchers.matchesXsdInClasspath("VideoGameXSD.xsd"));
+    }
+
+    // validate JSON Schema for JSON response
+    @Test
+    public void testVideoGameSchemaJson() {
+        given()
+            .pathParam("videoGameId", 14)
+            .when()
+            .get(VideoGamesEndpoints.VIDEOGAME)
+            .then()
+            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("VideoGameJsonSchema.json"));
+    }
+
+    // measure response time
+    @Test
+    public void responseTime() {
+        long responseTime = get(VideoGamesEndpoints.VIDEOGAMES).time();
+        System.out.printf("Response time in MS: %d ms", responseTime);
+    }
+
+    // assert response time
+    @Test
+    public void assertOnResponseTime() {
+        when()
+            .get(VideoGamesEndpoints.VIDEOGAMES)
+            .then()
+            .time(Matchers.lessThan(1000L));
     }
 
 }

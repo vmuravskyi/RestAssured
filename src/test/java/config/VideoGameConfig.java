@@ -8,6 +8,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
+import org.hamcrest.Matchers;
 import org.junit.BeforeClass;
 
 public class VideoGameConfig {
@@ -30,6 +31,7 @@ public class VideoGameConfig {
 
         videoGameResponseSpec = new ResponseSpecBuilder()
             .expectStatusCode(HttpStatus.SC_OK)
+            .expectResponseTime(Matchers.lessThan(3000L))
             .build();
 
         RestAssured.requestSpecification = videoGameRequestSpec;
